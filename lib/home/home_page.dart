@@ -1,9 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_shop/home_banner.dart';
+import 'package:flutter_shop/home/home_banner.dart';
+import 'package:flutter_shop/home/home_navgitor.dart';
 import 'package:flutter_shop/service/data_utils.dart';
-import 'package:flutter_shop/service/net_utils.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -39,10 +40,16 @@ class _HomePageState extends State<HomePage> {
                if (snapshot.hasData) {
                  var data = json.decode(snapshot.data.toString());
                  List<Map> bannerData = (data['data']['slides'] as List).cast();
-                 return Container(
-                   child: HomeBanner(bannerData),
-                   width: double.infinity,
-                   height: 200.0,
+                 List<Map> navigatorData = (data['data']['category'] as List).cast();
+                 return Column(
+                   children: <Widget>[
+                     Container(
+                      child: HomeBanner(bannerData),
+                      width: double.infinity,
+                      height: ScreenUtil().setHeight(333),
+                     ),
+                     HomeNavigator(navigatorData),
+                   ],
                  );
                } else {
                  return Center(

@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/cart_page.dart';
 import 'package:flutter_shop/category_page.dart';
-import 'package:flutter_shop/home_page.dart';
+import 'package:flutter_shop/home/home_page.dart';
 import 'package:flutter_shop/member_page.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class IndexPage extends StatefulWidget {
   IndexPage({Key key}) : super(key: key);
@@ -57,6 +58,7 @@ class _IndexPageState extends State<IndexPage> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
     return Scaffold(
       // backgroundColor: ,
       bottomNavigationBar: BottomNavigationBar(
