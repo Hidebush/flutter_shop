@@ -33,6 +33,7 @@ class HomeNavigator extends StatelessWidget {
       padding: EdgeInsets.all(3.0),
       child: GridView.count(
         crossAxisCount: 5,
+        physics: NeverScrollableScrollPhysics(), /// 禁止滚动
         padding: EdgeInsets.all(4.0),
         children:dataList.map((item){
           return _subItemView(context, item);

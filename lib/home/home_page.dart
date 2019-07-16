@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/home/home_ad.dart';
 import 'package:flutter_shop/home/home_banner.dart';
+import 'package:flutter_shop/home/home_leaderPhone.dart';
 import 'package:flutter_shop/home/home_navgitor.dart';
 import 'package:flutter_shop/service/data_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -43,6 +44,8 @@ class _HomePageState extends State<HomePage> {
                  List<Map> bannerData = (data['data']['slides'] as List).cast();
                  List<Map> navigatorData = (data['data']['category'] as List).cast();
                  String adImageStr = data['data']['advertesPicture']['PICTURE_ADDRESS'];
+                 String leaderImageName = data['data']['shopInfo']['leaderImage'];
+                 String leaderPhone = data['data']['shopInfo']['leaderPhone'];
                  return Column(
                    children: <Widget>[
                      Container(
@@ -53,6 +56,8 @@ class _HomePageState extends State<HomePage> {
                      HomeNavigator(navigatorData),
                      Container(height: 5, color: Colors.grey[200],),
                      HomeAd(adImageStr),
+                     HomeLeaderPhone(leaderPhone, leaderImageName),
+                     Container(height: 5, color: Colors.grey[200],),
                    ],
                  );
                } else {
