@@ -29,7 +29,7 @@ class HomeNavigator extends StatelessWidget {
       dataList.removeRange(10, dataList.length);
     }
     return Container(
-      height: ScreenUtil().setHeight(245),
+      height: ScreenUtil().setHeight(310),
       padding: EdgeInsets.all(3.0),
       child: GridView.count(
         crossAxisCount: 5,

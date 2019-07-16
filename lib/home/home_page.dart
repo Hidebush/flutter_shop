@@ -5,6 +5,7 @@ import 'package:flutter_shop/home/home_ad.dart';
 import 'package:flutter_shop/home/home_banner.dart';
 import 'package:flutter_shop/home/home_leaderPhone.dart';
 import 'package:flutter_shop/home/home_navgitor.dart';
+import 'package:flutter_shop/loading/loading.dart';
 import 'package:flutter_shop/service/data_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -51,7 +52,7 @@ class _HomePageState extends State<HomePage> {
                      Container(
                       child: HomeBanner(bannerData),
                       width: double.infinity,
-                      height: ScreenUtil().setHeight(270),
+                      height: ScreenUtil().setHeight(333),
                      ),
                      HomeNavigator(navigatorData),
                      Container(height: 5, color: Colors.grey[200],),
@@ -62,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                  );
                } else {
                  return Center(
-                   child: Text('loading...'),
+                   child: Loading(),
                  );
                }
              },
