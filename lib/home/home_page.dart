@@ -5,6 +5,8 @@ import 'package:flutter_shop/home/home_ad.dart';
 import 'package:flutter_shop/home/home_banner.dart';
 import 'package:flutter_shop/home/home_leaderPhone.dart';
 import 'package:flutter_shop/home/home_navgitor.dart';
+import 'package:flutter_shop/home/home_operation.dart';
+import 'package:flutter_shop/home/home_recommend.dart';
 import 'package:flutter_shop/loading/loading.dart';
 import 'package:flutter_shop/service/data_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -47,19 +49,24 @@ class _HomePageState extends State<HomePage> {
                  String adImageStr = data['data']['advertesPicture']['PICTURE_ADDRESS'];
                  String leaderImageName = data['data']['shopInfo']['leaderImage'];
                  String leaderPhone = data['data']['shopInfo']['leaderPhone'];
-                 return Column(
-                   children: <Widget>[
-                     Container(
-                      child: HomeBanner(bannerData),
-                      width: double.infinity,
-                      height: ScreenUtil().setHeight(333),
-                     ),
-                     HomeNavigator(navigatorData),
-                     Container(height: 5, color: Colors.grey[200],),
-                     HomeAd(adImageStr),
-                     HomeLeaderPhone(leaderPhone, leaderImageName),
-                     Container(height: 5, color: Colors.grey[200],),
-                   ],
+                 List<Map> recommendList = (data['data']['recommend'] as List).cast();
+                 return SingleChildScrollView(
+                   child: Column(
+                    children: <Widget>[
+                      Container(
+                        child: HomeBanner(bannerData),
+                        width: double.infinity,
+                        height: ScreenUtil().setHeight(250),
+                      ),
+                      HomeNavigator(navigatorData),
+                      Container(height: 5, color: Colors.grey[200],),
+                      HomeAd(adImageStr),
+                      HomeLeaderPhone(leaderPhone, leaderImageName),
+                      Container(height: 5, color: Colors.grey[200],),
+                      HomeRecommend(recommendList: recommendList),
+                      HomeOperation(operationInfo: data['data']['floor1Pic']),
+                    ],
+                  ),
                  );
                } else {
                  return Center(
