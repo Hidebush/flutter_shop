@@ -42,27 +42,67 @@ class FloorContent extends StatelessWidget {
     return Container(
       child: Column(
         children: <Widget>[
-          Row(children: <Widget>[
-            Expanded(
-              child: FloorItem(
-                imageName: contentData[0]['image'],
+          Container(
+            height: ScreenUtil.screenWidthDp * 0.5,
+            child: Row(children: <Widget>[
+              Expanded(
+                child: FloorItem(
+                  imageName: contentData[0]['image'],
+                ),
               ),
-            ),
-            Expanded(
-              child: Column(
-                children: <Widget>[
-                  FloorItem(
-                    imageName: contentData[1]['image'],
+              Expanded(
+                child: Column(
+                  children: <Widget>[
+                    Expanded(
+                      child: FloorItem(
+                        imageName: contentData[1]['image'],
+                      ),
+                    ),
+                    Expanded(
+                      child: FloorItem(
+                        imageName: contentData[2]['image'],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // Expanded(
+              //   child: FloorItem(
+              //     imageName: contentData[0]['image'],
+              //   ),
+              // ),
+              // Expanded(
+              //   child: Column(
+              //     children: <Widget>[
+              //       FloorItem(
+              //         imageName: contentData[1]['image'],
+              //       ),
+              //       FloorItem(
+              //         imageName: contentData[1]['image'],
+              //       )
+              //     ],
+              //   ),
+              //   flex: 1,
+              // )
+            ]),
+          ),
+          Container(
+            height: ScreenUtil.screenWidthDp * 0.5 * 0.5,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: FloorItem(
+                    imageName: contentData[3]['image'],
                   ),
-                  FloorItem(
-                    imageName: contentData[1]['image'],
-                  )
-                ],
-              ),
-              flex: 1,
-            )
-          ]),
-          Row()
+                ),
+                Expanded(
+                  child: FloorItem(
+                    imageName: contentData[4]['image'],
+                  ),
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
