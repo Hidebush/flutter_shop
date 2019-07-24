@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/home/home_ad.dart';
 import 'package:flutter_shop/home/home_banner.dart';
+import 'package:flutter_shop/home/home_floor.dart';
 import 'package:flutter_shop/home/home_leaderPhone.dart';
 import 'package:flutter_shop/home/home_navgitor.dart';
 import 'package:flutter_shop/home/home_operation.dart';
@@ -52,6 +53,8 @@ class _HomePageState extends State<HomePage> {
                  String leaderPhone = data['data']['shopInfo']['leaderPhone'];
                  List<Map> recommendList = (data['data']['recommend'] as List).cast();
                  List<String> operation1 = [data['data']['saoma']['PICTURE_ADDRESS'], data['data']['integralMallPic']['PICTURE_ADDRESS'], data['data']['newUser']['PICTURE_ADDRESS']];
+                 String floor1HeaderImageName = data['data']['floor1Pic']['PICTURE_ADDRESS'];
+                 List<Map> floor1ContentArr = (data['data']['floor1'] as List).cast();
                  return SingleChildScrollView(
                    child: Column(
                     children: <Widget>[
@@ -67,7 +70,8 @@ class _HomePageState extends State<HomePage> {
                       Container(height: 5, color: Colors.grey[200],),
                       HomeOpreationRow(rowData: operation1),
                       HomeRecommend(recommendList: recommendList),
-                      HomeOperation(operationInfo: data['data']['floor1Pic']),
+                      // HomeOperation(operationInfo: data['data']['floor1Pic']),
+                      HomeFloor(headerImageName: floor1HeaderImageName, floorContent: floor1ContentArr),
                     ],
                   ),
                  );
