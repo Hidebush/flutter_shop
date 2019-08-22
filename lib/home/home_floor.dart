@@ -65,25 +65,7 @@ class FloorContent extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
-              // Expanded(
-              //   child: FloorItem(
-              //     imageName: contentData[0]['image'],
-              //   ),
-              // ),
-              // Expanded(
-              //   child: Column(
-              //     children: <Widget>[
-              //       FloorItem(
-              //         imageName: contentData[1]['image'],
-              //       ),
-              //       FloorItem(
-              //         imageName: contentData[1]['image'],
-              //       )
-              //     ],
-              //   ),
-              //   flex: 1,
-              // )
+              )
             ]),
           ),
           Container(

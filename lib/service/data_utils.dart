@@ -7,4 +7,11 @@ class DataUtil {
     print(response.toString());
     return response;
   }
+
+  static Future requestHomeBelowConten(Map<String, dynamic> params) async {
+    var response = await NetUtils.post(API.HomePageBelowContenPath, params);
+    print('----------------hot good ---------');
+    print(response.toString());
+    return response;
+  }
 }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_shop/home/home_ad.dart';
 import 'package:flutter_shop/home/home_banner.dart';
 import 'package:flutter_shop/home/home_floor.dart';
+import 'package:flutter_shop/home/home_hotGoods.dart';
 import 'package:flutter_shop/home/home_leaderPhone.dart';
 import 'package:flutter_shop/home/home_navgitor.dart';
 import 'package:flutter_shop/home/home_operation.dart';
@@ -21,6 +22,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+  int _page = 1;
+  List<Map> _hotGoodsList = [];
   @override
   void initState() {
     super.initState();
@@ -32,6 +35,7 @@ class _HomePageState extends State<HomePage> {
       
     //   print(data['code']);
     // });
+    _hotGoods();
   }
   @override
   Widget build(BuildContext context) {
@@ -72,6 +76,13 @@ class _HomePageState extends State<HomePage> {
                       HomeRecommend(recommendList: recommendList),
                       // HomeOperation(operationInfo: data['data']['floor1Pic']),
                       HomeFloor(headerImageName: floor1HeaderImageName, floorContent: floor1ContentArr),
+                      HomeHotGoods(hotGoodsList: _hotGoodsList),
+                      InkWell(
+                        onTap: (){
+                          _hotGoods();
+                        },
+                        child: Text('点我...'),
+                      )
                     ],
                   ),
                  );
@@ -84,5 +95,16 @@ class _HomePageState extends State<HomePage> {
          ),
        ),
     );
+  }
+
+  void _hotGoods() {
+    DataUtil.requestHomeBelowConten({'page': _page}).then((value){
+      var data = json.decode(value.toString());
+      List<Map> newGoodsList = (data['data'] as List).cast();
+      setState(() {
+        _page++;
+        _hotGoodsList.addAll(newGoodsList);
+      });
+    });
   }
 }
