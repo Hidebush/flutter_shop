@@ -1,6 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/ball_pulse_footer.dart';
+import 'package:flutter_easyrefresh/ball_pulse_header.dart';
+import 'package:flutter_easyrefresh/taurus_footer.dart';
+import 'package:flutter_easyrefresh/taurus_header.dart';
 import 'package:flutter_shop/home/home_ad.dart';
 import 'package:flutter_shop/home/home_banner.dart';
 import 'package:flutter_shop/home/home_floor.dart';
@@ -13,6 +17,7 @@ import 'package:flutter_shop/home/home_recommend.dart';
 import 'package:flutter_shop/loading/loading.dart';
 import 'package:flutter_shop/service/data_utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -35,7 +40,6 @@ class _HomePageState extends State<HomePage> {
       
     //   print(data['code']);
     // });
-    _hotGoods();
   }
   @override
   Widget build(BuildContext context) {
@@ -59,9 +63,11 @@ class _HomePageState extends State<HomePage> {
                  List<String> operation1 = [data['data']['saoma']['PICTURE_ADDRESS'], data['data']['integralMallPic']['PICTURE_ADDRESS'], data['data']['newUser']['PICTURE_ADDRESS']];
                  String floor1HeaderImageName = data['data']['floor1Pic']['PICTURE_ADDRESS'];
                  List<Map> floor1ContentArr = (data['data']['floor1'] as List).cast();
-                 return SingleChildScrollView(
-                   child: Column(
-                    children: <Widget>[
+                 return EasyRefresh(
+                   header: TaurusHeader(),
+                   footer: TaurusFooter(),
+                   child: ListView(
+                     children: <Widget>[
                       Container(
                         child: HomeBanner(bannerData),
                         width: double.infinity,
@@ -77,14 +83,15 @@ class _HomePageState extends State<HomePage> {
                       // HomeOperation(operationInfo: data['data']['floor1Pic']),
                       HomeFloor(headerImageName: floor1HeaderImageName, floorContent: floor1ContentArr),
                       HomeHotGoods(hotGoodsList: _hotGoodsList),
-                      InkWell(
-                        onTap: (){
-                          _hotGoods();
-                        },
-                        child: Text('点我...'),
-                      )
                     ],
-                  ),
+                   ),
+                   onRefresh: () async {
+                     print('refresh');
+                   },
+                   onLoad: () async {
+                     print('onload');
+                     _hotGoods();
+                   },
                  );
                } else {
                  return Center(
