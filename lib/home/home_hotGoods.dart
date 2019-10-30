@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeHotGoods extends StatefulWidget {
-
   final List<Map> hotGoodsList;
   HomeHotGoods({Key key, this.hotGoodsList}) : super(key: key);
 
@@ -22,9 +21,9 @@ class _HomeHotGoodsState extends State<HomeHotGoods> {
 
   List<Widget> _warpChildWidgets() {
     if (widget.hotGoodsList.length > 0) {
-      List<Widget> hotGoodsWidgets = widget.hotGoodsList.map((hotGood){
+      List<Widget> hotGoodsWidgets = widget.hotGoodsList.map((hotGood) {
         return InkWell(
-          onTap: (){
+          onTap: () {
             print('点击了火爆商品');
           },
           child: Container(
@@ -36,27 +35,37 @@ class _HomeHotGoodsState extends State<HomeHotGoods> {
                   width: ScreenUtil().setWidth(375),
                 ),
                 Text(
-                  hotGood['name'], 
-                  style: TextStyle(color: Colors.pink), 
-                  overflow: TextOverflow.ellipsis, 
+                  hotGood['name'],
+                  style: TextStyle(color: Colors.pink),
+                  overflow: TextOverflow.ellipsis,
                 ),
-                Row(
-                  children: <Widget>[
-                    RichText(
-                      text: TextSpan(
-                        text: '¥', 
-                        style: TextStyle(fontSize: 10, color: Colors.black),  
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: '${hotGood['mallPrice']}',
-                            style: TextStyle(fontSize: 14, color: Colors.black)
-                          )
-                        ],
+                Container(
+                  margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                  child: Row(
+                    children: <Widget>[
+                      // SizedBox(width: 20,),
+                      RichText(
+                        text: TextSpan(
+                          text: '¥',
+                          style: TextStyle(fontSize: 10, color: Colors.black),
+                          children: <TextSpan>[
+                            TextSpan(
+                                text: '${hotGood['mallPrice']}',
+                                style: TextStyle(
+                                    fontSize: 14, color: Colors.black))
+                          ],
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 60,),
-                    Text('${hotGood['price']}')
-                  ],
+                      // SizedBox(width: 60,),
+                      Text(
+                        '${hotGood['price']}',
+                        style: TextStyle(
+                            color: Colors.grey,
+                            decoration: TextDecoration.lineThrough),
+                      )
+                    ],
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  ),
                 )
               ],
             ),
@@ -74,15 +83,13 @@ class _HomeHotGoodsState extends State<HomeHotGoods> {
       children: _warpChildWidgets(),
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-       child: Column(
-         children: <Widget>[
-            hotTitle,
-            _warpWidget()
-         ],
-       ),
+      child: Column(
+        children: <Widget>[hotTitle, _warpWidget()],
+      ),
     );
   }
 }

@@ -63,6 +63,11 @@ class _HomePageState extends State<HomePage> {
                  List<String> operation1 = [data['data']['saoma']['PICTURE_ADDRESS'], data['data']['integralMallPic']['PICTURE_ADDRESS'], data['data']['newUser']['PICTURE_ADDRESS']];
                  String floor1HeaderImageName = data['data']['floor1Pic']['PICTURE_ADDRESS'];
                  List<Map> floor1ContentArr = (data['data']['floor1'] as List).cast();
+                 String floor2HeaderImageName = data['data']['floor2Pic']['PICTURE_ADDRESS'];
+                 List<Map> floor2ContentArr = (data['data']['floor2'] as List).cast();
+                 String floor3HeaderImageName = data['data']['floor3Pic']['PICTURE_ADDRESS'];
+                 List<Map> floor3ContentArr = (data['data']['floor3'] as List).cast();
+
                  return EasyRefresh(
                    header: TaurusHeader(),
                    footer: TaurusFooter(),
@@ -82,6 +87,8 @@ class _HomePageState extends State<HomePage> {
                       HomeRecommend(recommendList: recommendList),
                       // HomeOperation(operationInfo: data['data']['floor1Pic']),
                       HomeFloor(headerImageName: floor1HeaderImageName, floorContent: floor1ContentArr),
+                      HomeFloor(headerImageName: floor2HeaderImageName, floorContent: floor2ContentArr),
+                      HomeFloor(headerImageName: floor3HeaderImageName, floorContent: floor3ContentArr),
                       HomeHotGoods(hotGoodsList: _hotGoodsList),
                     ],
                    ),
