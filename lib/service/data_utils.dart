@@ -14,4 +14,10 @@ class DataUtil {
     print(response.toString());
     return response;
   }
+
+  static Future requestCategoryContent() async {
+    var response = await NetUtils.post(API.CategoryGetCategoryPath, null);
+    // print(response.toString());
+    return response;
+  }
 }
