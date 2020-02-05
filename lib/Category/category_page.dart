@@ -3,7 +3,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_shop/Category/Model/Category.dart';
 import 'package:flutter_shop/Category/leftCategoryNav.dart';
+import 'package:flutter_shop/Category/rightCategoryNav.dart';
+import 'package:flutter_shop/Provider/child_category.dart';
 import 'package:flutter_shop/service/data_utils.dart';
+import 'package:provider/provider.dart';
 
 class CategoryPage extends StatefulWidget {
   CategoryPage({Key key}) : super(key: key);
@@ -20,13 +23,20 @@ class _CategoryPageState extends State<CategoryPage> {
       appBar: AppBar(
         title: Text('分类'),
       ),
-      body: Container(
+      body: MultiProvider(providers: [
+        ChangeNotifierProvider(create: (context) => ChildCategory(),)
+      ], child: Container(
         child: Row(
           children: <Widget>[
-            LeftCategoryNav()
+            LeftCategoryNav(),
+            Column(
+              children: <Widget>[
+                RightCategoryNav()
+              ],
+            )
           ],
         ),
-      ),
+      )),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           
