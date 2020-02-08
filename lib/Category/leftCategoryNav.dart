@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_shop/Category/Model/categoryGoodsList.dart';
+import 'package:flutter_shop/Provider/category_goods_list_provider.dart';
 import 'package:flutter_shop/service/data_utils.dart';
 import 'package:flutter_shop/Category/Model/Category.dart';
 import 'dart:convert';
@@ -21,6 +23,7 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
   @override
   void initState() {
     _requestCategoryData();
+    _getGoodList(null);
     super.initState();
   }
 
@@ -36,6 +39,16 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
     });
   }
 
+  void _getGoodList(categoryId) async {
+    var params = {'categoryId': categoryId == null ? 4 : categoryId, 'categorySubId': "", 'page': 1};
+
+    await DataUtil.requestCategoryMallGoods(params).then((value) {
+      var data = json.decode(value.toString());
+      CategoryGoodsListModel goodsListM = CategoryGoodsListModel.fromJson(data);
+      Provider.of<CategoryGoodsListProvider>(context, listen: false).getGoodsList(goodsListM.data);
+    });
+  }
+
   Widget _leftInkwell(int index) {
     bool _isClick = false;
     _isClick = (_clickIndex == index);
@@ -47,6 +60,7 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
         });
         List dataList = list[index].bxMallSubDto;
         Provider.of<ChildCategory>(context, listen: false).getChildCategory(dataList);
+        _getGoodList(list[index].mallCategoryId);
       },
       child: Container(
         height: ScreenUtil().setWidth(100),
@@ -67,7 +81,7 @@ class _LeftCategoryNavState extends State<LeftCategoryNav> {
     return Container(
       width: ScreenUtil().setWidth(180),
       child: ListView.builder(
-        itemCount: list.length,
+        itemCount: list == null ? 0 : list.length,
         itemBuilder: (context, index) {
           return _leftInkwell(index);
         },

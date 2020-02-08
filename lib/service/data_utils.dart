@@ -20,4 +20,12 @@ class DataUtil {
     // print(response.toString());
     return response;
   }
+
+  static Future requestCategoryMallGoods(Map<String, dynamic> params) async {
+    var response = await NetUtils.post(API.CategoryGetMallGoodsPath, params);
+    // print('----------------mall goods ---------');
+    // print(response.toString());
+    return response;
+  }
+
 }

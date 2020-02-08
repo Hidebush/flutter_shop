@@ -3,4 +3,5 @@ class API {
   static const String HomePageContentPath = BaseUrl + 'homePageContent';  /// 首页
   static const String HomePageBelowContenPath = BaseUrl + 'homePageBelowConten';  /// 首页上拉
   static const String CategoryGetCategoryPath = BaseUrl + 'getCategory';  /// 分类数据
+  static const String CategoryGetMallGoodsPath = BaseUrl + 'getMallGoods';  /// 商品分类数据
 }

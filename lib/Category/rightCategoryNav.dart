@@ -37,7 +37,7 @@ class _RightCategoryNavState extends State<RightCategoryNav> {
                 Border(bottom: BorderSide(width: 1, color: Colors.black12))),
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: list.length,
+          itemCount: list == null ? 0 : list.length,
           itemBuilder: (context, index) {
             return _rightInkWell(list[index]["mallSubName"]);
           },
